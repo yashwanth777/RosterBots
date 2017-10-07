@@ -10,27 +10,49 @@ import XCTest
 @testable import RosterBots
 
 class RosterBotsTests: XCTestCase {
-    
+    var own = Owner();
+    var totalplayersArray = [Player]()
+    var names = Set<String>();
+    var scores = Set<Int>()
+
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        totalplayersArray = own.generatePlayers();
+        for i in 0..<totalplayersArray.count{
+            names.insert(totalplayersArray[i].name);
+            scores.insert(totalplayersArray[i].totalAbilityScore);
+        }
     }
     
     override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    
+    func testPlayerName() {
+        let player = Player();
+        XCTAssertLessThan(1, 100)
+        let charset = CharacterSet(charactersIn: "ABCDEFGHIJKLKMNOPQRSTUVWXYZ0123456789");
+        XCTAssertTrue((player.name.rangeOfCharacter(from: charset) != nil));
+        
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testTotalPlayerCount(){
+        XCTAssertEqual(totalplayersArray.count, 15);
+    }
+    
+    func testPlayerTotalScore(){
+        for i in 0..<totalplayersArray.count{
+            XCTAssertLessThan( totalplayersArray[i].totalAbilityScore,100);
         }
+    }
+    
+    func testPlayerUniqueScores(){
+        XCTAssertEqual(scores.count, 15);
+    }
+    
+    func testPlayerUniqueNames(){
+        XCTAssertEqual(names.count, 15);
     }
     
 }

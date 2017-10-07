@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  RosterBots
 //
-//  Created by Roger on 10/4/17.
+//  Created by Yashwanth on 10/4/17.
 //  Copyright © 2017 Yashwanth. All rights reserved.
 //
 
